@@ -41,7 +41,7 @@ body {
   margin: 20px auto;
   width: 90%;
   max-width: 1920px;
-  background-color: red;
+  // background-color: red;
 }
 header {
   @extend %maxWidth;
@@ -61,6 +61,7 @@ header {
         height: 30px;
       }
       .handle_mode_cont {
+        @include displayCenter(center, center);
         position: relative;
         width: 60px;
         height: 30px;
@@ -69,9 +70,9 @@ header {
         cursor: pointer;
         .mode_boolet {
           position: absolute;
-          width: 30px;
-          height: 30px;
-          left: 0px;
+          width: 27px;
+          height: 27px;
+          left: 3px;
           // right: 0px;
           background-color: blue;
           border-radius: 50%;
@@ -82,6 +83,7 @@ header {
   h1 {
     @include displayCenter(center, center);
     width: max-content;
+    margin: 10px auto;
     span {
       width: 50px;
       height: 50px;
@@ -90,16 +92,30 @@ header {
       }
     }
   }
+  p{
+    margin-bottom: 20px;
+  }
   .search_container {
+    @include displayCenter(center, center);
+    position: relative;
     width: 70%;
     height: 50px;
+    backdrop-filter: blur(15px);
     input {
       width: 100%;
       height: 100%;
       padding: 10px;
       border-radius: 10px;
-      // border: none;
+      border: 1px solid white;
       font-size: 16px;
+      outline: none;
+      background: transparent;
+    }
+    i{
+      position: absolute;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
     }
   }
 }
