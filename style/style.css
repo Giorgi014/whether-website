@@ -2,4 +2,43 @@
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+
+header {
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1920px;
+  background-color: red;
+}
+
+header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+header .mode_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 300px;
+  height: 50px;
+  background-color: blue;
+  right: 0px;
+}
+header h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-max-content;
+  width: max-content;
+}
+header h1 span {
+  width: 50px;
+  height: 50px;
+}
+header h1 span img {
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */
