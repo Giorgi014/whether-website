@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style/style.css" />
     <title>Weather</title>
-</head>
-<body>
-    <header class="head">
+  </head>
+  <body>
+    <!-- HEADER WITH MODES AND SEARCH -->
 
+    <header>
+      <section class="mode_container">
+        <div class="color_mode"></div>
+        <div class="temprature_mode"></div>
+      </section>
+      <h1>Weather Now</h1>
+      <p>Your beautiful weather companion</p>
+      <section class="search_container">
+        <input type="text" placeholder="Search for a city..." />
+      </section>
     </header>
 
+    <!-- MAIN CONTAINER -->
+
+    <main>
+      <article class="searched_city_container">
+        <section class="whether_info">
+          <div class="humidity_cont">
+            <p>Humidity</p>
+          </div>
+          <div class="wind_speed_cont">
+            <p>Wind Speed</p>
+          </div>
+          <div class="pressure_cont">
+            <p>Pressure</p>
+          </div>
+        </section>
+      </article>
+    </main>
 
     <script src="./javascript/app.js"></script>
-</body>
+  </body>
 </html>
