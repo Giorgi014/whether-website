@@ -5,7 +5,7 @@
 }
 
 header {
-  margin: 50px auto;
+  margin: 20px auto;
   width: 90%;
   max-width: 1920px;
   background-color: red;
@@ -23,10 +23,33 @@ header .mode_container {
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 300px;
-  height: 50px;
-  background-color: blue;
   right: 0px;
+}
+header .mode_container .color_mode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+header .mode_container .color_mode img {
+  width: 30px;
+  height: 30px;
+}
+header .mode_container .color_mode .handle_mode_cont {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: green;
+  border-radius: 30px;
+  cursor: pointer;
+}
+header .mode_container .color_mode .handle_mode_cont .mode_boolet {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: 0px;
+  background-color: blue;
+  border-radius: 50%;
 }
 header h1 {
   display: flex;
@@ -41,4 +64,15 @@ header h1 span {
 }
 header h1 span img {
   width: 100%;
+}
+header .search_container {
+  width: 70%;
+  height: 50px;
+}
+header .search_container input {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
 }/*# sourceMappingURL=style.css.map */
