@@ -59,7 +59,7 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
           background-color: $lite_white;
           border-radius: 30px;
           cursor: pointer;
-          #mode_boolet {
+          .mode_boolet {
             position: absolute;
             width: 22px;
             height: 22px;
@@ -67,6 +67,7 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
             // right: 3px;
             background-color: $white;
             border-radius: 50%;
+            transition: all 0.3s ease-in-out;
           }
         }
       }

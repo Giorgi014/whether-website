@@ -24,6 +24,9 @@ body {
   font-family: "InterTight Medium";
   overflow: hidden;
 }
+body.darkmode {
+  background: #000000;
+}
 
 .content_wrapper {
   width: 100%;
