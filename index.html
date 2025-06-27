@@ -1,79 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style/style.css" />
-    <link rel="stylesheet" href="./components/Header/header.css">
-    <link rel="stylesheet" href="./components/SearchedCity/searchedCity.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./components/Header/header.css" />
+    <link rel="stylesheet" href="./components/SearchedCity/searchedCity.css" />
+    <link rel="stylesheet" href="./components/Forecast/forecast.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Weather</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="content_wrapper">
-        <!-- HEADER WITH MODES AND SEARCH -->
-        <header>
-            <section class="mode_container">
-                <div class="color_mode mode">
-                    <img src="./assets/icon/weather-icons-master/svg/wi-day-sunny.svg" alt="">
-                    <div class="handle_mode_cont">
-                        <div id="mode_boolet"></div>
-                    </div>
-                    <img src="./assets/icon/weather-icons-master/svg/wi-moon-waning-crescent-3.svg" alt="">
-                </div>
-                <div class="temprature_mode mode">
-                    <img src="./assets/icon/weather-icons-master/svg/wi-celsius.svg" alt="" class="celsius">
-                    <div class="handle_mode_cont">
-                        <div id="mode_boolet"></div>
-                    </div>
-                    <img src="./assets/icon/weather-icons-master/svg/wi-fahrenheit.svg" alt="" class="fahrenheit">
-                </div>
-            </section>
-            <h1>
-                <span>
-                    <img src="./assets/icon/weather-icons-master/svg/wi-cloud.svg" alt="" />
-                </span>
-                Weather Now
-            </h1>
-            <p>Your beautiful weather companion</p>
-            <section class="search_container">
-                <input type="text" placeholder="Search for a city..." />
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </section>
-        </header>
+      <!-- HEADER WITH MODES AND SEARCH -->
+      <header>
+        <section class="mode_container">
+          <div class="color_mode mode">
+            <img
+              src="./assets/icon/weather-icons-master/svg/wi-day-sunny.svg"
+              alt=""
+            />
+            <div class="handle_mode_cont">
+              <div id="mode_boolet"></div>
+            </div>
+            <img
+              src="./assets/icon/weather-icons-master/svg/wi-moon-waning-crescent-3.svg"
+              alt=""
+            />
+          </div>
+          <div class="temprature_mode mode">
+            <img
+              src="./assets/icon/weather-icons-master/svg/wi-celsius.svg"
+              alt=""
+              class="celsius"
+            />
+            <div class="handle_mode_cont">
+              <div id="mode_boolet"></div>
+            </div>
+            <img
+              src="./assets/icon/weather-icons-master/svg/wi-fahrenheit.svg"
+              alt=""
+              class="fahrenheit"
+            />
+          </div>
+        </section>
+        <h1>
+          <span>
+            <img
+              src="./assets/icon/weather-icons-master/svg/wi-cloud.svg"
+              alt=""
+            />
+          </span>
+          Weather Now
+        </h1>
+        <p>Your beautiful weather companion</p>
+        <section class="search_container">
+          <input type="text" placeholder="Search for a city..." />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </section>
+      </header>
 
-        <!-- MAIN CONTAINER -->
-        <main>
-            <article class="searched_city_container">
-                <section class="city_container">
-                    <p class="city">Batumi, <span>GE</span></p>
-                    <div class="city_temperature">
-                        <div class="city_weather">
-                            <img src="./assets/icon/weather-icons-master/svg/wi-day-sunny.svg" alt="">
-                        </div>
-                        <div class="temperature">
-                            <p class="temperature_degrees">22 <span class="circle"></span></p>
-                            <p class="temperature_info">Sunny</p>
-                        </div>
-                    </div>
-                </section>
-                <section class="whether_info">
-                    <div class="humidity_cont">
-                        <p>Humidity</p>
-                    </div>
-                    <div class="wind_speed_cont">
-                        <p>Wind Speed</p>
-                    </div>
-                    <div class="pressure_cont">
-                        <p>Pressure</p>
-                    </div>
-                </section>
-            </article>
-        </main>
+      <!-- MAIN CONTAINER -->
+      <main>
+        <article class="searched_city_container">
+          <section class="city_container">
+            <p class="city">Batumi, <span>GE</span></p>
+            <div class="city_temperature">
+              <div class="city_weather">
+                <img
+                  src="./assets/icon/weather-icons-master/svg/wi-day-sunny.svg"
+                  alt=""
+                />
+              </div>
+              <div class="temperature">
+                <p class="temperature_degrees">
+                  22 <span class="circle"></span>
+                </p>
+                <p class="temperature_info">Sunny</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- WEATHER INFO CONTAINER =================================== -->
+
+          <section class="whether_info">
+            <div class="humidity_cont index_cont">
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-humidity.svg"
+                alt=""
+              />
+              <p class="humidity">Humidity</p>
+              <p class="humidity_index">60%</p>
+            </div>
+            <div class="wind_speed_cont index_cont">
+              <img
+                src="./assets/icon//weather-icons-master/svg/wi-windy.svg"
+                alt=""
+              />
+              <p class="wind_speed">Wind Speed</p>
+              <p class="wind_speed_index">12km/h</p>
+            </div>
+            <div class="pressure_cont index_cont">
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-barometer.svg"
+                alt=""
+              />
+              <p class="pressure">Pressure</p>
+              <p class="pressure_index">1013hPa</p>
+            </div>
+          </section>
+        </article>
+
+        <!-- FORECAST CONTANER =================================== -->
+
+        <article class="forecast_container">
+          <h2>5-Day Forecast</h2>
+          <section class="days_container">
+            <div class="today days">
+              <p class="day">Today</p>
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-day-sunny.svg"
+                alt=""
+              />
+              <p class="day_weather">Sunny</p>
+              <div class="day_night">
+                <div class="day_time">
+                  <p class="temperature_degrees">
+                    22 <span class="circle"></span>
+                  </p>
+                </div>
+                <div class="night_time">
+                  <p class="temperature_degrees">
+                    18 <span class="circle"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="tomorrow days">
+              <p class="day">Tomorrow</p>
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-day-cloudy.svg"
+                alt=""
+              />
+              <p class="day_weather">Partly Cloudy</p>
+              <div class="day_night">
+                <div class="day_time">
+                  <p class="temperature_degrees">
+                    22 <span class="circle"></span>
+                  </p>
+                </div>
+                <div class="night_time">
+                  <p class="temperature_degrees">
+                    18 <span class="circle"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="third_day days">
+              <p class="day">Wednesday</p>
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-hail.svg"
+                alt=""
+              />
+              <p class="day_weather">Rainy</p>
+              <div class="day_night">
+                <div class="day_time">
+                  <p class="temperature_degrees">
+                    22 <span class="circle"></span>
+                  </p>
+                </div>
+                <div class="night_time">
+                  <p class="temperature_degrees">
+                    18 <span class="circle"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="fourth_day days">
+              <p class="day">Thursday</p>
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-cloudy.svg"
+                alt=""
+              />
+              <p class="day_weather">Cloudy</p>
+              <div class="day_night">
+                <div class="day_time">
+                  <p class="temperature_degrees">
+                    22 <span class="circle"></span>
+                  </p>
+                </div>
+                <div class="night_time">
+                  <p class="temperature_degrees">
+                    18 <span class="circle"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="fifth_day days">
+              <p class="day">Friday</p>
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-day-sunny.svg"
+                alt=""
+              />
+              <p class="day_weather">Sunny</p>
+              <div class="day_night">
+                <div class="day_time">
+                  <p class="temperature_degrees">
+                    22 <span class="circle"></span>
+                  </p>
+                </div>
+                <div class="night_time">
+                  <p class="temperature_degrees">
+                    18 <span class="circle"></span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </article>
+      </main>
     </div>
 
     <!-- JAVASCRIPT -->
     <script src="./components/javascript/app.js"></script>
     <script src="./components/javascript/modes.js"></script>
-</body>
+  </body>
 </html>

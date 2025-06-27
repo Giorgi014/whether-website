@@ -82,6 +82,24 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
           }
         }
       }
+      .whether_info{
+        @include displayCenter(space-around, center);
+        width: 100%;
+        margin: 20px auto 40px auto;
+        .index_cont{
+            @include displayCenter(center, center);
+            flex-direction: column;
+            gap: 5px;
+            font-size: 20px;
+            img{
+                width: 90px;
+                height: 90px;
+            }
+            .humidity_index, .wind_speed_index, .pressure_index{
+                font-size: 18px;
+            }
+        }
+      }
     }
   }
 }
