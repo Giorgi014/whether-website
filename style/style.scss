@@ -1,8 +1,30 @@
+@font-face {
+  font-family: "InterTight Bold";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Bold.ttf)
+    format("woff2");
+}
+@font-face {
+  font-family: "InterTight Medium";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Medium.ttf)
+    format("woff2");
+}
+@font-face {
+  font-family: "InterTight Thin";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Thin.ttf)
+    format("woff2");
+}
+
 @mixin displayCenter($justify, $align) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
 }
+
+$white: #ffffff;
+$lite_white: #ffffff6f;
+$lite_white_bg: #ffffff1b;
+$sunny_day: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+$moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
 
 * {
   margin: 0px;
@@ -11,111 +33,51 @@
 }
 
 body {
+  width: 100vw;
+  height: 100vh;
+  color: $white;
+  background: $sunny_day;
+  // background: $moon_night;
+  font-family: "InterTight Medium";
+  overflow: hidden;
   // background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);    //sunny
   // background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);    //rainy
   // background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);    //cloudy
   // background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    //default
-
+  // background-image: linear-gradient(to bottom right, rgb(30, 58, 138), rgb(30, 64, 175), rgb(88, 28, 135));
   // dark mode
-
   // background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 50%, #3a2414 100%);   //sunny
   // background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #243447 100%);   //rainy
   // background: linear-gradient(135deg, #1a1320 0%, #2a1d35 50%, #352849 100%);   //cloudy
   // background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f2027 100%);   //default
 
   // background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #7c3aed 100%);
-  // background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
   // background: linear-gradient(135deg, #a0a0a0 0%, #808080 50%, #606060 100%);
   // background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #111827 100%);
   // background: linear-gradient(135deg, #0984e3 0%, #636e72 50%, #2d3436 100%);
   // background: linear-gradient(135deg, #1e3a8a 0%, #374151 50%, #111827 100%);
   // background: linear-gradient(135deg, #74b9ff 0%, #ffffff 50%, #ddd6fe 100%);
   // background: linear-gradient(135deg, #1e3a8a 0%, #ffffff 50%, #d1d5db 100%);
-  // background: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
   // background: linear-gradient(135deg, #111827 0%, #7c3aed 50%, #000000 100%);
   // background: linear-gradient(135deg, #74b9ff 0%, #6c5ce7 50%, #fd79a8 100%);
   // background: linear-gradient(135deg, #1f2937 0%, #1e3a8a 50%, #7c3aed 100%);
 }
 
 %maxWidth {
-  margin: 20px auto;
+  margin: 50px auto;
   width: 90%;
   max-width: 1920px;
-  // background-color: red;
 }
-header {
-  @extend %maxWidth;
-  @include displayCenter(flex-start, center);
-  flex-direction: column;
-  position: relative;
-  .mode_container {
-    @include displayCenter(center, center);
-    position: absolute;
-    // background-color: blue;
-    right: 0px;
-    .color_mode {
-      @include displayCenter(space-between, center);
-      position: relative;
-      img {
-        width: 30px;
-        height: 30px;
-      }
-      .handle_mode_cont {
-        @include displayCenter(center, center);
-        position: relative;
-        width: 60px;
-        height: 30px;
-        background-color: green;
-        border-radius: 30px;
-        cursor: pointer;
-        .mode_boolet {
-          position: absolute;
-          width: 27px;
-          height: 27px;
-          left: 3px;
-          // right: 0px;
-          background-color: blue;
-          border-radius: 50%;
-        }
-      }
-    }
-  }
-  h1 {
-    @include displayCenter(center, center);
-    width: max-content;
-    margin: 10px auto;
-    span {
-      width: 50px;
-      height: 50px;
-      img {
-        width: 100%;
-      }
-    }
-  }
-  p{
-    margin-bottom: 20px;
-  }
-  .search_container {
-    @include displayCenter(center, center);
-    position: relative;
-    width: 70%;
-    height: 50px;
-    backdrop-filter: blur(15px);
-    input {
-      width: 100%;
-      height: 100%;
-      padding: 10px;
-      border-radius: 10px;
-      border: 1px solid white;
-      font-size: 16px;
-      outline: none;
-      background: transparent;
-    }
-    i{
-      position: absolute;
-      right: 10px;
-      font-size: 20px;
-      cursor: pointer;
-    }
+
+.content_wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // MAIN CONTAINER
+
+  main {
+    width: 100vw;
   }
 }

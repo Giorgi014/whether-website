@@ -1,99 +1,36 @@
+@font-face {
+  font-family: "InterTight Bold";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Bold.ttf) format("woff2");
+}
+@font-face {
+  font-family: "InterTight Medium";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Medium.ttf) format("woff2");
+}
+@font-face {
+  font-family: "InterTight Thin";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Thin.ttf) format("woff2");
+}
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
 
-header {
-  margin: 20px auto;
-  width: 90%;
-  max-width: 1920px;
+body {
+  width: 100vw;
+  height: 100vh;
+  color: #ffffff;
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+  font-family: "InterTight Medium";
+  overflow: hidden;
 }
 
-header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-}
-header .mode_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  right: 0px;
-}
-header .mode_container .color_mode {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-}
-header .mode_container .color_mode img {
-  width: 30px;
-  height: 30px;
-}
-header .mode_container .color_mode .handle_mode_cont {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 60px;
-  height: 30px;
-  background-color: green;
-  border-radius: 30px;
-  cursor: pointer;
-}
-header .mode_container .color_mode .handle_mode_cont .mode_boolet {
-  position: absolute;
-  width: 27px;
-  height: 27px;
-  left: 3px;
-  background-color: blue;
-  border-radius: 50%;
-}
-header h1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: -moz-max-content;
-  width: max-content;
-  margin: 10px auto;
-}
-header h1 span {
-  width: 50px;
-  height: 50px;
-}
-header h1 span img {
+.content_wrapper {
   width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
-header p {
-  margin-bottom: 20px;
-}
-header .search_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 70%;
-  height: 50px;
-  -webkit-backdrop-filter: blur(15px);
-          backdrop-filter: blur(15px);
-}
-header .search_container input {
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid white;
-  font-size: 16px;
-  outline: none;
-  background: transparent;
-}
-header .search_container i {
-  position: absolute;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
+.content_wrapper main {
+  width: 100vw;
 }/*# sourceMappingURL=style.css.map */

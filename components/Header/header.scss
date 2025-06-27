@@ -1,0 +1,118 @@
+@font-face {
+  font-family: "InterTight Bold";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Bold.ttf)
+    format("woff2");
+}
+@font-face {
+  font-family: "InterTight Medium";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Medium.ttf)
+    format("woff2");
+}
+@font-face {
+  font-family: "InterTight Thin";
+  src: url(../assets/font/Inter_Tight/static/InterTight-Thin.ttf)
+    format("woff2");
+}
+
+@mixin displayCenter($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+$white: #ffffff;
+$lite_white: #ffffff6f;
+$lite_white_bg: #ffffff1b;
+$sunny_day: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+$moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
+
+%maxWidth {
+  margin: 50px auto;
+  width: 90%;
+  max-width: 1920px;
+}
+
+.content_wrapper {
+  header {
+    @extend %maxWidth;
+    @include displayCenter(flex-start, center);
+    flex-direction: column;
+    position: relative;
+    .mode_container {
+      @include displayCenter(center, center);
+      position: absolute;
+      gap: 10px;
+      right: 0px;
+      .mode {
+        @include displayCenter(space-between, center);
+        gap: 5px;
+        position: relative;
+        img {
+          width: 20px;
+          height: 20px;
+        }
+        .handle_mode_cont {
+          @include displayCenter(center, center);
+          position: relative;
+          width: 50px;
+          height: 25px;
+          background-color: $lite_white;
+          border-radius: 30px;
+          cursor: pointer;
+          #mode_boolet {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            left: 3px;
+            // right: 3px;
+            background-color: $white;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+    h1 {
+      @include displayCenter(center, center);
+      width: max-content;
+      margin: 10px auto;
+      font-family: "InterTight Bold";
+      font-size: 50px;
+      span {
+        width: 50px;
+        height: 50px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    .search_container {
+      @include displayCenter(center, center);
+      position: relative;
+      width: 70%;
+      height: 50px;
+      input {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 15px;
+        border: 1px solid $white;
+        font-size: 16px;
+        outline: none;
+        background: $lite_white_bg;
+        color: $white;
+        &::placeholder {
+          color: $white;
+        }
+      }
+      i {
+        position: absolute;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
