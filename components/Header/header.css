@@ -53,14 +53,46 @@
   border-radius: 30px;
   cursor: pointer;
 }
-.content_wrapper header .mode_container .mode .handle_mode_cont .mode_boolet {
+.content_wrapper header .mode_container .mode #handle_cont .mode_boolet {
   position: absolute;
   width: 22px;
   height: 22px;
   left: 3px;
   background-color: #ffffff;
   border-radius: 50%;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+body.darkmode .content_wrapper header .mode_container .mode #handle_cont .mode_boolet {
+  transform: translateX(22px);
+}
+.content_wrapper header .mode_container .mode #temp_handle_cont .mode_boolet {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  left: 3px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: transform 0.3s ease-in-out;
+}
+body.fahrenheit .content_wrapper header .mode_container .mode #temp_handle_cont .mode_boolet {
+  transform: translateX(22px);
+}
+.content_wrapper header .mode_container .mode .sun {
+  width: -moz-max-content;
+  width: max-content;
+  height: 25px;
+  cursor: pointer;
+  transition: transform 0.7s ease-in-out;
+}
+.content_wrapper header .mode_container .mode .sun:hover {
+  transform: rotate(180deg);
+}
+.content_wrapper header .mode_container .mode .moon {
+  width: -moz-max-content;
+  width: max-content;
+  height: 25px;
+  transform: rotate(-30deg);
+  cursor: pointer;
 }
 .content_wrapper header h1 {
   display: flex;
