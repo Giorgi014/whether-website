@@ -25,7 +25,7 @@ body {
   overflow: hidden;
 }
 body.darkmode {
-  background: #000000;
+  background: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
 }
 
 .content_wrapper {

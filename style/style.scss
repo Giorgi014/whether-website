@@ -37,11 +37,10 @@ body {
   height: 100vh;
   color: $white;
   background: $sunny_day;
-  // background: $moon_night;
   font-family: "InterTight Medium";
   overflow: hidden;
-  &.darkmode{
-    background: #000000;
+  &.darkmode {
+    background: $moon_night;
   }
   // background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);    //sunny
   // background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);    //rainy
