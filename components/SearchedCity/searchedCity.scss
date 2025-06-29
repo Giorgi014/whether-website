@@ -44,11 +44,20 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
         @include displayCenter(center, center);
         flex-direction: column;
         margin: 20px auto;
-        .city {
-          width: 100%;
-          text-align: center;
-          font-size: clamp(50px, 8vw, 70px);
-          margin-bottom: 20px;
+        .searched_city {
+          @include displayCenter(center, center);
+          #city {
+            width: 100%;
+            text-align: center;
+            font-size: clamp(50px, 8vw, 70px);
+            margin-bottom: 20px;
+          }
+          #country_code {
+            width: 100%;
+            text-align: center;
+            font-size: clamp(50px, 8vw, 70px);
+            margin-bottom: 20px;
+          }
         }
         .city_temperature {
           @include displayCenter(center, center);
@@ -65,8 +74,9 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
           .temperature {
             @include displayCenter(flex-start, center);
             flex-direction: column;
-            .temperature_degrees {
-              @include displayCenter(space-between, flex-start);
+            .degrees {
+              @include displayCenter(center, flex-start);
+              gap: 5px;
               .circle {
                 width: 10px;
                 height: 10px;
@@ -75,29 +85,31 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
                 margin-top: 8px;
               }
             }
-            .temperature_info {
+            #temperature_info {
               font-family: "InterTight Thin";
               font-size: clamp(16px, 2.5vw, 20px);
             }
           }
         }
       }
-      .whether_info{
+      .whether_info {
         @include displayCenter(space-around, center);
         width: 100%;
         margin: 20px auto 40px auto;
-        .index_cont{
-            @include displayCenter(center, center);
-            flex-direction: column;
-            gap: 5px;
-            font-size: clamp(18px, 2vw, 20px);
-            img{
-                width: clamp(70px, 10vw, 90px);
-                height: clamp(70px, 10vw, 90px);
-            }
-            .humidity_index, .wind_speed_index, .pressure_index{
-                font-size: clamp(16px, 2vw, 18px);
-            }
+        .index_cont {
+          @include displayCenter(center, center);
+          flex-direction: column;
+          gap: 5px;
+          font-size: clamp(18px, 2vw, 20px);
+          img {
+            width: clamp(70px, 10vw, 90px);
+            height: clamp(70px, 10vw, 90px);
+          }
+          #humidity_index,
+          #wind_speed_index,
+          #pressure_index {
+            font-size: clamp(16px, 2vw, 18px);
+          }
         }
       }
     }

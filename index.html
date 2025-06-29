@@ -74,7 +74,10 @@
       <main>
         <article class="searched_city_container">
           <section class="city_container">
-            <p class="city">Batumi, <span>GE</span></p>
+            <div class="searched_city">
+              <p id="city"></p>
+              <p id="country_code"></p>
+            </div>
             <div class="city_temperature">
               <div class="city_weather">
                 <img
@@ -83,10 +86,11 @@
                 />
               </div>
               <div class="temperature">
-                <p class="temperature_degrees">
-                  22 <span class="circle"></span>
-                </p>
-                <p class="temperature_info">Sunny</p>
+                <div class="degrees">
+                  <p id="temperature_degrees"></p>
+                  <div class="circle"></div>
+                </div>
+                <p id="temperature_info"></p>
               </div>
             </div>
           </section>
@@ -100,7 +104,7 @@
                 alt=""
               />
               <p class="humidity">Humidity</p>
-              <p class="humidity_index">60%</p>
+              <p id="humidity_index"></p>
             </div>
             <div class="wind_speed_cont index_cont">
               <img
@@ -108,7 +112,7 @@
                 alt=""
               />
               <p class="wind_speed">Wind Speed</p>
-              <p class="wind_speed_index">12km/h</p>
+              <p id="wind_speed_index"></p>
             </div>
             <div class="pressure_cont index_cont">
               <img
@@ -116,7 +120,7 @@
                 alt=""
               />
               <p class="pressure">Pressure</p>
-              <p class="pressure_index">1013hPa</p>
+              <p id="pressure_index"></p>
             </div>
           </section>
         </article>

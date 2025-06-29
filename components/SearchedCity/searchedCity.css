@@ -29,7 +29,18 @@
   flex-direction: column;
   margin: 20px auto;
 }
-.content_wrapper main .searched_city_container .city_container .city {
+.content_wrapper main .searched_city_container .city_container .searched_city {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content_wrapper main .searched_city_container .city_container .searched_city #city {
+  width: 100%;
+  text-align: center;
+  font-size: clamp(50px, 8vw, 70px);
+  margin-bottom: 20px;
+}
+.content_wrapper main .searched_city_container .city_container .searched_city #country_code {
   width: 100%;
   text-align: center;
   font-size: clamp(50px, 8vw, 70px);
@@ -56,19 +67,20 @@
   align-items: center;
   flex-direction: column;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .temperature_degrees {
+.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .degrees {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
+  gap: 5px;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .temperature_degrees .circle {
+.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .degrees .circle {
   width: 10px;
   height: 10px;
   border: 2px solid white;
   border-radius: 50%;
   margin-top: 8px;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .temperature_info {
+.content_wrapper main .searched_city_container .city_container .city_temperature .temperature #temperature_info {
   font-family: "InterTight Thin";
   font-size: clamp(16px, 2.5vw, 20px);
 }
@@ -91,6 +103,8 @@
   width: clamp(70px, 10vw, 90px);
   height: clamp(70px, 10vw, 90px);
 }
-.content_wrapper main .searched_city_container .whether_info .index_cont .humidity_index, .content_wrapper main .searched_city_container .whether_info .index_cont .wind_speed_index, .content_wrapper main .searched_city_container .whether_info .index_cont .pressure_index {
+.content_wrapper main .searched_city_container .whether_info .index_cont #humidity_index,
+.content_wrapper main .searched_city_container .whether_info .index_cont #wind_speed_index,
+.content_wrapper main .searched_city_container .whether_info .index_cont #pressure_index {
   font-size: clamp(16px, 2vw, 18px);
 }/*# sourceMappingURL=searchedCity.css.map */
