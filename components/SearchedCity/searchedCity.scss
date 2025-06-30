@@ -34,7 +34,7 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
 
 .content_wrapper {
   main {
-    .searched_city_container {
+    #searched_city_container {
       @extend %maxWidth;
       background-color: $lite_white_bg;
       border-radius: 20px;

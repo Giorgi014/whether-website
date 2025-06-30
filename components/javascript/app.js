@@ -7,9 +7,12 @@ const humidity_index = document.getElementById("humidity_index");
 const wind_speed_index = document.getElementById("wind_speed_index");
 const pressure_index = document.getElementById("pressure_index");
 
-const fetchData = async () => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=surami`;
-  const res = await fetch(url + `&appid=${apiKey}`);
+const search = document.getElementById("search");
+const search_btn = document.getElementById("seach_btn");
+
+const fetchData = async (city) => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
+  const res = await fetch(url);
 
   return await res.json();
 };
@@ -24,9 +27,28 @@ const renderTodayWeather = (cities) => {
   pressure_index.innerHTML = `${cities.main.pressure}hPa`;
 };
 
+const searchCity = async () => {
+  const searchedCity = search.value.trim();
+
+  if (searchedCity) {
+    const cities = await fetchData(searchedCity);
+    renderTodayWeather(cities);
+  }
+};
+
+search.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    searchCity();
+  }
+});
+
+search_btn.addEventListener("click", () => {
+  searchCity();
+});
+
 const renderHtml = async () => {
   try {
-    const cities = await fetchData();
+    const cities = await fetchData("batumi");
     renderTodayWeather(cities);
   } catch (err) {
     console.log("Error: ", err);
@@ -34,4 +56,4 @@ const renderHtml = async () => {
 };
 
 renderHtml();
-console.log(fetchData());
+console.log(fetchData("batumi"));

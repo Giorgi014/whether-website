@@ -10,88 +10,88 @@
   font-family: "InterTight Thin";
   src: url(../../assets/font/Inter_Tight/static/InterTight-Thin.ttf) format("woff2");
 }
-.content_wrapper main .searched_city_container {
+.content_wrapper main #searched_city_container {
   margin: 50px auto;
   width: 90%;
   max-width: 1920px;
 }
 
-.content_wrapper main .searched_city_container {
+.content_wrapper main #searched_city_container {
   background-color: rgba(255, 255, 255, 0.1058823529);
   border-radius: 20px;
   padding: 1px;
   box-shadow: 0px 20px 50px 5px rgba(0, 0, 0, 0.358);
 }
-.content_wrapper main .searched_city_container .city_container {
+.content_wrapper main #searched_city_container .city_container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: 20px auto;
 }
-.content_wrapper main .searched_city_container .city_container .searched_city {
+.content_wrapper main #searched_city_container .city_container .searched_city {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.content_wrapper main .searched_city_container .city_container .searched_city #city {
+.content_wrapper main #searched_city_container .city_container .searched_city #city {
   width: 100%;
   text-align: center;
   font-size: clamp(50px, 8vw, 70px);
   margin-bottom: 20px;
 }
-.content_wrapper main .searched_city_container .city_container .searched_city #country_code {
+.content_wrapper main #searched_city_container .city_container .searched_city #country_code {
   width: 100%;
   text-align: center;
   font-size: clamp(50px, 8vw, 70px);
   margin-bottom: 20px;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature {
+.content_wrapper main #searched_city_container .city_container .city_temperature {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
   font-size: clamp(40px, 6.6vw, 60px);
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .city_weather {
+.content_wrapper main #searched_city_container .city_container .city_temperature .city_weather {
   width: 70px;
   height: 70px;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .city_weather img {
+.content_wrapper main #searched_city_container .city_container .city_temperature .city_weather img {
   width: 100%;
   height: 100%;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature {
+.content_wrapper main #searched_city_container .city_container .city_temperature .temperature {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .degrees {
+.content_wrapper main #searched_city_container .city_container .city_temperature .temperature .degrees {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   gap: 5px;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature .degrees .circle {
+.content_wrapper main #searched_city_container .city_container .city_temperature .temperature .degrees .circle {
   width: 10px;
   height: 10px;
   border: 2px solid white;
   border-radius: 50%;
   margin-top: 8px;
 }
-.content_wrapper main .searched_city_container .city_container .city_temperature .temperature #temperature_info {
+.content_wrapper main #searched_city_container .city_container .city_temperature .temperature #temperature_info {
   font-family: "InterTight Thin";
   font-size: clamp(16px, 2.5vw, 20px);
 }
-.content_wrapper main .searched_city_container .whether_info {
+.content_wrapper main #searched_city_container .whether_info {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   margin: 20px auto 40px auto;
 }
-.content_wrapper main .searched_city_container .whether_info .index_cont {
+.content_wrapper main #searched_city_container .whether_info .index_cont {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,12 +99,12 @@
   gap: 5px;
   font-size: clamp(18px, 2vw, 20px);
 }
-.content_wrapper main .searched_city_container .whether_info .index_cont img {
+.content_wrapper main #searched_city_container .whether_info .index_cont img {
   width: clamp(70px, 10vw, 90px);
   height: clamp(70px, 10vw, 90px);
 }
-.content_wrapper main .searched_city_container .whether_info .index_cont #humidity_index,
-.content_wrapper main .searched_city_container .whether_info .index_cont #wind_speed_index,
-.content_wrapper main .searched_city_container .whether_info .index_cont #pressure_index {
+.content_wrapper main #searched_city_container .whether_info .index_cont #humidity_index,
+.content_wrapper main #searched_city_container .whether_info .index_cont #wind_speed_index,
+.content_wrapper main #searched_city_container .whether_info .index_cont #pressure_index {
   font-size: clamp(16px, 2vw, 18px);
 }/*# sourceMappingURL=searchedCity.css.map */
