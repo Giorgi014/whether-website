@@ -18,21 +18,22 @@ const fetchData = async (city) => {
 };
 
 const renderTodayWeather = (cities) => {
-  city.innerHTML = `${cities.name},`;
-  country_code.innerHTML = cities.sys.country;
-  temp.innerHTML = cities.main.temp;
-  weather_info.innerHTML = cities.weather[0].main;
-  humidity_index.innerHTML = `${cities.main.humidity}%`;
-  wind_speed_index.innerHTML = `${cities.wind.speed}km/h`;
-  pressure_index.innerHTML = `${cities.main.pressure}hPa`;
+  city.textContent = `${cities.name},`;
+  country_code.textContent = cities.sys.country;
+  temp.textContent = cities.main.temp;
+  weather_info.textContent = cities.weather[0].main;
+  humidity_index.textContent = `${cities.main.humidity}%`;
+  wind_speed_index.textContent = `${cities.wind.speed}km/h`;
+  pressure_index.textContent = `${cities.main.pressure}hPa`;
 };
 
 const searchCity = async () => {
-  const searchedCity = search.value.trim();
+  const searchedCity = search.value;
 
   if (searchedCity) {
     const cities = await fetchData(searchedCity);
     renderTodayWeather(cities);
+    search.value = "";
   }
 };
 
