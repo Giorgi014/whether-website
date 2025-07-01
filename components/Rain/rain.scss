@@ -1,12 +1,12 @@
 .fa-droplet{
     animation: fall linear forwards;
     color: #ffffffb5;
-    position: absolute;
+    position: fixed;
     top: -20px;
 }
 
 @keyframes fall{
     to{
-        transform: translateY(250vh);
+        transform: translateY(105vh);
     }
 }
