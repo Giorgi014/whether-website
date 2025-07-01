@@ -1,14 +1,21 @@
 const apiKey = "c002eabec3dffadff47e3a2e8c28fb4f";
 const city = document.getElementById("city");
-const country_code = document.getElementById("country_code");
+const COUNTRY_CODE = document.getElementById("country_code");
 const temp = document.getElementById("temperature_degrees");
-const weather_info = document.getElementById("temperature_info");
-const humidity_index = document.getElementById("humidity_index");
-const wind_speed_index = document.getElementById("wind_speed_index");
-const pressure_index = document.getElementById("pressure_index");
-
+const WEATHER_INFO = document.getElementById("temperature_info");
+const HUMIDITY_INDEX = document.getElementById("humidity_index");
+const WIND_SPEED_INDEX = document.getElementById("wind_speed_index");
+const PRESSURE_INDEX = document.getElementById("pressure_index");
+const FEELS_LIKE_INDEX = document.getElementById("feels_like_index");
+const VISIBILITY_INDEX = document.getElementById("visibility_index");
+const SUNRISE_TIME = document.getElementById("sunrise_time");
+const SUNSET_TIME = document.getElementById("sunset_time");
 const search = document.getElementById("search");
-const search_btn = document.getElementById("seach_btn");
+const SEARCH_BTN = document.getElementById("seach_btn");
+const FORECAST_CONTAINER = document.getElementsByClassName("forecast_container");
+
+
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
 const fetchData = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
@@ -17,14 +24,26 @@ const fetchData = async (city) => {
   return await res.json();
 };
 
+const fetchForecastData = async (lat, lon) => {
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  const res = await fetch(forecastUrl);
+  return await res.json();
+};
+console.log(fetchForecastData(41.6359, 44.6416));
+
+
 const renderTodayWeather = (cities) => {
   city.textContent = `${cities.name},`;
-  country_code.textContent = cities.sys.country;
+  COUNTRY_CODE.textContent = cities.sys.country;
   temp.textContent = cities.main.temp;
-  weather_info.textContent = cities.weather[0].main;
-  humidity_index.textContent = `${cities.main.humidity}%`;
-  wind_speed_index.textContent = `${cities.wind.speed}km/h`;
-  pressure_index.textContent = `${cities.main.pressure}hPa`;
+  WEATHER_INFO.textContent = cities.weather[0].main;
+  HUMIDITY_INDEX.textContent = `${cities.main.humidity}%`;
+  WIND_SPEED_INDEX.textContent = `${cities.wind.speed}km/h`;
+  PRESSURE_INDEX.textContent = `${cities.main.pressure}hPa`;
+  FEELS_LIKE_INDEX.textContent = `${cities.main.feels_like}°C`;
+  VISIBILITY_INDEX.textContent = `${cities.visibility}m`;
+  SUNRISE_TIME.textContent = `${cities.sys.sunrise}`;
+  SUNSET_TIME.textContent = `${cities.sys.sunset}`;
 };
 
 const searchCity = async () => {
@@ -43,7 +62,7 @@ search.addEventListener("keyup", (e) => {
   }
 });
 
-search_btn.addEventListener("click", () => {
+SEARCH_BTN.addEventListener("click", () => {
   searchCity();
 });
 

@@ -188,4 +188,10 @@ body.fahrenheit .content_wrapper header .mode_container .mode #temp_handle_cont 
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .content_wrapper header .search_container {
+    width: 100%;
+  }
 }/*# sourceMappingURL=header.css.map */

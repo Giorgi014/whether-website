@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./components/Header/header.css" />
     <link rel="stylesheet" href="./components/SearchedCity/searchedCity.css" />
     <link rel="stylesheet" href="./components/Forecast/forecast.css" />
+    <link rel="stylesheet" href="./components/Snow/snow.css" />
+    <link rel="stylesheet" href="./components/Rain/rain.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -17,6 +19,8 @@
     <title>Weather</title>
   </head>
   <body>
+    <!-- <i class="fa-solid fa-snowflake" id="snow_flake"></i> -->
+    <i class="fa-solid fa-droplet" id="rain_drop"></i>
     <div class="content_wrapper">
       <!-- HEADER WITH MODES AND SEARCH -->
       <header>
@@ -98,6 +102,14 @@
           <!-- WEATHER INFO CONTAINER =================================== -->
 
           <section class="whether_info">
+            <div class="feels_like_cont index_cont">
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-thermometer.svg"
+                alt=""
+              />
+              <p class="feels_like">Feels Like</p>
+              <p id="feels_like_index"></p>
+            </div>
             <div class="humidity_cont index_cont">
               <img
                 src="./assets/icon/weather-icons-master/svg/wi-humidity.svg"
@@ -121,6 +133,32 @@
               />
               <p class="pressure">Pressure</p>
               <p id="pressure_index"></p>
+            </div>
+            <div class="visibility_cont index_cont">
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-horizon.svg"
+                alt=""
+              />
+              <p class="visibility">Visibility</p>
+              <p id="visibility_index"></p>
+            </div>
+          </section>
+          <section class="sunrise_sunset_container">
+            <div class="sunrise_container">
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-sunrise.svg"
+                alt=""
+              />
+              <p class="sunrise">Sunrise</p>
+              <p id="sunrise_time"></p>
+            </div>
+            <div class="sunset_container">
+              <img
+                src="./assets/icon/weather-icons-master/svg/wi-sunset.svg"
+                alt=""
+              />
+              <p class="sunset">Sunset</p>
+              <p id="sunset_time"></p>
             </div>
           </section>
         </article>
@@ -239,5 +277,7 @@
     <script src="./components/javascript/app.js"></script>
     <script src="./components/javascript/modes.js"></script>
     <script src="./components/javascript/temperature.js"></script>
+    <!-- <script src="./components/javascript/snow.js"></script> -->
+    <script src="./components/javascript/rain.js"></script>
   </body>
 </html>

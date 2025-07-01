@@ -203,3 +203,15 @@ $btn_bg_bark: linear-gradient(
     }
   }
 }
+
+// RESPONSIVE ================================================
+
+@media screen and (max-width: 768px) {
+  .content_wrapper {
+    header {
+      .search_container {
+        width: 100%;
+      }
+    }
+  }
+}
