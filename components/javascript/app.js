@@ -77,9 +77,17 @@ const searchCity = async () => {
   const searchedCity = search.value;
 
   if (searchedCity) {
-    const cities = await fetchCurrentData(searchedCity);
-    renderTodayWeather(cities);
-    search.value = "";
+    try {
+      if (window.showLoader) window.showLoader();
+      const cities = await fetchCurrentData(searchedCity);
+      renderTodayWeather(cities);
+      search.value = "";
+    } catch (error) {
+      if (window.hideLoader) window.hideLoader();
+      console.error("Error fetching weather data:", error);
+    } finally {
+      if (window.hideLoader) window.hideLoader();
+    }
   }
 };
 

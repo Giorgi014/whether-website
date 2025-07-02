@@ -1,13 +1,15 @@
-const loader = document.getElementsByClassName("k-cube-grid");
-const WEATHER_CONTAINER = document.getElementsByClassName("searched_city_container");
-const WEATHER_CONTENT = document.getElementsByName("city_container");
+const loader = document.getElementsByClassName("sk-cube-grid");
+const WEATHER_CONTENT = document.getElementsByClassName("city_container");
 
-const isLoading = () => {
-    loader.style.display = "block";
-    WEATHER_CONTENT.style.display = "none"
+const showLoader = () => {
+    if (loader) loader[0].style.display = "block";
+    if (WEATHER_CONTENT) WEATHER_CONTENT[0].style.display = "none";
 }
 
-const isLoaded = () => {
-    loader.style.display = "none";
-    WEATHER_CONTENT.style.display = "flex"
+const hideLoader = () => {
+    if (loader) loader[0].style.display = "none";
+    if (WEATHER_CONTENT) WEATHER_CONTENT[0].style.display = "flex";
 }
+
+window.showLoader = showLoader;
+window.hideLoader = hideLoader;
