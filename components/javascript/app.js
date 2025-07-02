@@ -12,12 +12,20 @@ const SUNRISE_TIME = document.getElementById("sunrise_time");
 const SUNSET_TIME = document.getElementById("sunset_time");
 const search = document.getElementById("search");
 const SEARCH_BTN = document.getElementById("seach_btn");
-const FORECAST_CONTAINER = document.getElementsByClassName("forecast_container");
+const FORECAST_CONTAINER =
+  document.getElementsByClassName("forecast_container");
 
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
-let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-const fetchData = async (city) => {
+const fetchCurrentData = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
   const res = await fetch(url);
 
@@ -29,13 +37,14 @@ const fetchForecastData = async (lat, lon) => {
   const res = await fetch(forecastUrl);
   return await res.json();
 };
-console.log(fetchForecastData(41.6359, 44.6416));
-
+console.log(fetchForecastData(16.4063, -78.1586));
 
 const renderTodayWeather = (cities) => {
+  const WEATHER_CONDITION = cities.weather[0].main;
+
   city.textContent = `${cities.name},`;
   COUNTRY_CODE.textContent = cities.sys.country;
-  temp.textContent = cities.main.temp;
+  temp.textContent = Math.round(cities.main.temp);
   WEATHER_INFO.textContent = cities.weather[0].main;
   HUMIDITY_INDEX.textContent = `${cities.main.humidity}%`;
   WIND_SPEED_INDEX.textContent = `${cities.wind.speed}km/h`;
@@ -44,13 +53,31 @@ const renderTodayWeather = (cities) => {
   VISIBILITY_INDEX.textContent = `${cities.visibility}m`;
   SUNRISE_TIME.textContent = `${cities.sys.sunrise}`;
   SUNSET_TIME.textContent = `${cities.sys.sunset}`;
+
+  const isRaining = () => {
+    if (WEATHER_CONDITION.toLowerCase() === "rain") {
+      startRain();
+    } else {
+      stopRaining();
+    }
+  };
+  const isSnowing = () => {
+    if (WEATHER_CONDITION.toLowerCase() === "snow") {
+      startSnow();
+    } else {
+      stopSnowing();
+    }
+  };
+
+  isRaining();
+  isSnowing();
 };
 
 const searchCity = async () => {
   const searchedCity = search.value;
 
   if (searchedCity) {
-    const cities = await fetchData(searchedCity);
+    const cities = await fetchCurrentData(searchedCity);
     renderTodayWeather(cities);
     search.value = "";
   }
@@ -68,7 +95,7 @@ SEARCH_BTN.addEventListener("click", () => {
 
 const renderHtml = async () => {
   try {
-    const cities = await fetchData("batumi");
+    const cities = await fetchCurrentData("batumi");
     renderTodayWeather(cities);
   } catch (err) {
     console.log("Error: ", err);
@@ -76,4 +103,4 @@ const renderHtml = async () => {
 };
 
 renderHtml();
-console.log(fetchData("batumi"));
+console.log(fetchCurrentData("batumi"));

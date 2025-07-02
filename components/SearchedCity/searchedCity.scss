@@ -44,6 +44,7 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
         @include displayCenter(center, center);
         flex-direction: column;
         margin: 20px auto;
+        width: 100%;
         .searched_city {
           @include displayCenter(center, center);
           #city {
