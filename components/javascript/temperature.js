@@ -1,5 +1,6 @@
 const CHANGE_TEMPERATURE = document.getElementById("temp_handle_cont");
 const fahrenheit = localStorage.getItem("fahrenheit");
+const isFahrenheit = localStorage.getItem("fahrenheit") === "celsius";
 
 const temperatureMode = () => {
   const enableFahrenheit = () => {
@@ -13,8 +14,10 @@ const temperatureMode = () => {
     localStorage.setItem("fahrenheit", null);
   };
 
-  if (localStorage.getItem("fahrenheit") === "celsius") {
+  if (isFahrenheit) {
     enableFahrenheit();
+  }else{
+    disableFahrenheit();
   }
 
   CHANGE_TEMPERATURE.addEventListener("click", () => {

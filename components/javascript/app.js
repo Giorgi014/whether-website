@@ -37,11 +37,12 @@ const renderTodayWeather = (cities) => {
   const WEATHER_CONDITION = cities.list[0].weather[0].main;
   const sunriseTimestamp = new Date(cities.city.sunrise * 1000);
   const sunsetTimestamp = new Date(cities.city.sunset * 1000);
-
+  
   city.textContent = `${cities.city.name},`;
   COUNTRY_CODE.textContent = cities.city.country;
-  // temp.textContent = Math.round(cities.list[0].main.temp);
-  temp.textContent = cities.list[0].main.temp;
+  temp.textContent = isFahrenheit
+  ? KelvinToFahrenheit(cities.list[0].main.temp)
+  : KelvinToCelsius(cities.list[0].main.temp);
   WEATHER_INFO.textContent = cities.list[0].weather[0].main;
   HUMIDITY_INDEX.textContent = `${cities.list[0].main.humidity}%`;
   WIND_SPEED_INDEX.textContent = `${cities.list[0].wind.speed}km/h`;
