@@ -24,4 +24,5 @@ const startSnow = () => {
 
 const stopSnowing = () => {
   clearInterval(snowing);
+  snowing = null;
 };

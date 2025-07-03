@@ -27,4 +27,5 @@ const startRain = () => {
 
 const stopRaining = () => {
   clearInterval(raining);
+  raining = null;
 };

@@ -25,34 +25,31 @@ let days = [
   "Saturday",
 ];
 
-const fetchCurrentData = async (city) => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
+const fetchData = async (city) => {
+  // const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
   const res = await fetch(url);
 
   return await res.json();
 };
 
-const fetchForecastData = async (lat, lon) => {
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  const res = await fetch(forecastUrl);
-  return await res.json();
-};
-console.log(fetchForecastData(16.4063, -78.1586));
-
 const renderTodayWeather = (cities) => {
-  const WEATHER_CONDITION = cities.weather[0].main;
+  const WEATHER_CONDITION = cities.list[0].weather[0].main;
+  const sunriseTimestamp = new Date(cities.city.sunrise * 1000);
+  const sunsetTimestamp = new Date(cities.city.sunset * 1000);
 
-  city.textContent = `${cities.name},`;
-  COUNTRY_CODE.textContent = cities.sys.country;
-  temp.textContent = Math.round(cities.main.temp);
-  WEATHER_INFO.textContent = cities.weather[0].main;
-  HUMIDITY_INDEX.textContent = `${cities.main.humidity}%`;
-  WIND_SPEED_INDEX.textContent = `${cities.wind.speed}km/h`;
-  PRESSURE_INDEX.textContent = `${cities.main.pressure}hPa`;
-  FEELS_LIKE_INDEX.textContent = `${cities.main.feels_like}°C`;
-  VISIBILITY_INDEX.textContent = `${cities.visibility}m`;
-  SUNRISE_TIME.textContent = `${cities.sys.sunrise}`;
-  SUNSET_TIME.textContent = `${cities.sys.sunset}`;
+  city.textContent = `${cities.city.name},`;
+  COUNTRY_CODE.textContent = cities.city.country;
+  // temp.textContent = Math.round(cities.list[0].main.temp);
+  temp.textContent = cities.list[0].main.temp;
+  WEATHER_INFO.textContent = cities.list[0].weather[0].main;
+  HUMIDITY_INDEX.textContent = `${cities.list[0].main.humidity}%`;
+  WIND_SPEED_INDEX.textContent = `${cities.list[0].wind.speed}km/h`;
+  PRESSURE_INDEX.textContent = `${cities.list[0].main.pressure}hPa`;
+  FEELS_LIKE_INDEX.textContent = `${cities.list[0].main.feels_like}°C`;
+  VISIBILITY_INDEX.textContent = `${cities.list[0].visibility}m`;
+  SUNRISE_TIME.textContent = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
+  SUNSET_TIME.textContent = `${sunsetTimestamp.getHours()}:${sunsetTimestamp.getMinutes()}`;
 
   const isRaining = () => {
     if (WEATHER_CONDITION.toLowerCase() === "rain") {
@@ -73,17 +70,18 @@ const renderTodayWeather = (cities) => {
   isSnowing();
 };
 
+// const renderForcast = () => {};
+
 const searchCity = async () => {
   const searchedCity = search.value;
 
   if (searchedCity) {
     try {
       if (window.showLoader) window.showLoader();
-      const cities = await fetchCurrentData(searchedCity);
+      const cities = await fetchData(searchedCity);
       renderTodayWeather(cities);
       search.value = "";
     } catch (error) {
-      if (window.hideLoader) window.hideLoader();
       console.error("Error fetching weather data:", error);
     } finally {
       if (window.hideLoader) window.hideLoader();
@@ -103,7 +101,7 @@ SEARCH_BTN.addEventListener("click", () => {
 
 const renderHtml = async () => {
   try {
-    const cities = await fetchCurrentData("batumi");
+    const cities = await fetchData("batumi");
     renderTodayWeather(cities);
   } catch (err) {
     console.log("Error: ", err);
@@ -111,4 +109,4 @@ const renderHtml = async () => {
 };
 
 renderHtml();
-console.log(fetchCurrentData("batumi"));
+console.log(fetchData("batumi"));
