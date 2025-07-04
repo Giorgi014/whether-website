@@ -78,6 +78,12 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
             .degrees {
               @include displayCenter(center, flex-start);
               gap: 5px;
+              #temperature_degrees{
+                color: red;
+                body.fahrenheit &{
+                  color: green;
+                }
+              }
               .circle {
                 width: 10px;
                 height: 10px;

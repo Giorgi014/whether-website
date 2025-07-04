@@ -74,6 +74,12 @@
   align-items: flex-start;
   gap: 5px;
 }
+.content_wrapper main #searched_city_container .city_container .city_temperature .temperature .degrees #temperature_degrees {
+  color: red;
+}
+body.fahrenheit .content_wrapper main #searched_city_container .city_container .city_temperature .temperature .degrees #temperature_degrees {
+  color: green;
+}
 .content_wrapper main #searched_city_container .city_container .city_temperature .temperature .degrees .circle {
   width: 10px;
   height: 10px;

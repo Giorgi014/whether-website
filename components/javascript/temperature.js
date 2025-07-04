@@ -1,17 +1,16 @@
 const CHANGE_TEMPERATURE = document.getElementById("temp_handle_cont");
-const fahrenheit = localStorage.getItem("fahrenheit");
-const isFahrenheit = localStorage.getItem("fahrenheit") === "celsius";
+// const fahrenheit = localStorage.getItem("tempterature");
+const isFahrenheit = localStorage.getItem("tempterature") === "fahrenheit";
 
 const temperatureMode = () => {
   const enableFahrenheit = () => {
     document.body.classList.add("fahrenheit");
-    localStorage.setItem("fahrenheit", "celsius");
+    localStorage.setItem("tempterature", "fahrenheit");
   };
 
   const disableFahrenheit = () => {
     document.body.classList.remove("fahrenheit");
-
-    localStorage.setItem("fahrenheit", null);
+    localStorage.setItem("tempterature", "celsius");
   };
 
   if (isFahrenheit) {
@@ -21,8 +20,8 @@ const temperatureMode = () => {
   }
 
   CHANGE_TEMPERATURE.addEventListener("click", () => {
-    const currentMode = localStorage.getItem("fahrenheit");
-    currentMode !== "celsius" ? enableFahrenheit() : disableFahrenheit();
+    const currentMode = localStorage.getItem("tempterature");
+    currentMode !== "fahrenheit" ? enableFahrenheit() : disableFahrenheit();
   });
 };
 

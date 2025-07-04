@@ -47,7 +47,9 @@ const renderTodayWeather = (cities) => {
   HUMIDITY_INDEX.textContent = `${cities.list[0].main.humidity}%`;
   WIND_SPEED_INDEX.textContent = `${cities.list[0].wind.speed}km/h`;
   PRESSURE_INDEX.textContent = `${cities.list[0].main.pressure}hPa`;
-  FEELS_LIKE_INDEX.textContent = `${cities.list[0].main.feels_like}°C`;
+  FEELS_LIKE_INDEX.textContent = isFahrenheit
+  ? KelvinToFahrenheit(cities.list[0].main.feels_like)
+  : KelvinToCelsius(cities.list[0].main.feels_like);
   VISIBILITY_INDEX.textContent = `${cities.list[0].visibility}m`;
   SUNRISE_TIME.textContent = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
   SUNSET_TIME.textContent = `${sunsetTimestamp.getHours()}:${sunsetTimestamp.getMinutes()}`;
