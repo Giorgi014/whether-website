@@ -14,9 +14,9 @@ const search = document.getElementById("search");
 const SEARCH_BTN = document.getElementById("seach_btn");
 const FORECAST_CONTAINER =
   document.getElementsByClassName("forecast_container");
-const MAX_TEMPERATURE = document.getElementById("day_time");
-const MIN_TEMPERATURE = document.getElementById("night_time");
-
+const DAY_WEATHER = document.querySelectorAll("#day_weather");
+const MAX_TEMPERATURE = document.querySelectorAll("#day_time");
+const MIN_TEMPERATURE = document.querySelectorAll("#night_time");
 
 let days = [
   "Sunday",
@@ -37,35 +37,43 @@ const fetchData = async (city) => {
 };
 
 const renderTodayWeather = (cities) => {
-  const WEATHER_CONDITION = cities.list[0].weather[0].main;
   const sunriseTimestamp = new Date(cities.city.sunrise * 1000);
   const sunsetTimestamp = new Date(cities.city.sunset * 1000);
-  
-  city.textContent = `${cities.city.name},`;
-  COUNTRY_CODE.textContent = cities.city.country;
-  temp.textContent = isFahrenheit
-  ? KelvinToFahrenheit(cities.list[0].main.temp)
-  : KelvinToCelsius(cities.list[0].main.temp);
-  WEATHER_INFO.textContent = cities.list[0].weather[0].main;
-  HUMIDITY_INDEX.textContent = `${cities.list[0].main.humidity}%`;
-  WIND_SPEED_INDEX.textContent = `${cities.list[0].wind.speed}km/h`;
-  PRESSURE_INDEX.textContent = `${cities.list[0].main.pressure}hPa`;
-  FEELS_LIKE_INDEX.textContent = isFahrenheit
-  ? KelvinToFahrenheit(cities.list[0].main.feels_like)
-  : KelvinToCelsius(cities.list[0].main.feels_like);
-  VISIBILITY_INDEX.textContent = `${cities.list[0].visibility}m`;
+  const cityName = `${cities.city.name},`;
+  const countryCode = cities.city.country;
+  const weatherCondition = cities.list[0].weather[0].main;
+  const weatherTemp = isFahrenheit
+    ? KelvinToFahrenheit(cities.list[0].main.temp)
+    : KelvinToCelsius(cities.list[0].main.temp);
+  const feelsLikeTemp = isFahrenheit
+    ? KelvinToFahrenheit(cities.list[0].main.feels_like)
+    : KelvinToCelsius(cities.list[0].main.feels_like);
+  const humidity = `${cities.list[0].main.humidity}%`;
+  const windSpeed = `${cities.list[0].wind.speed}km/h`;
+  const pressure = `${cities.list[0].main.pressure}hPa`;
+  const visibility = `${cities.list[0].visibility}m`;
+
+  city.textContent = cityName;
+  COUNTRY_CODE.textContent = countryCode;
+  temp.textContent = weatherTemp;
+  WEATHER_INFO.textContent = weatherCondition;
+  HUMIDITY_INDEX.textContent = humidity;
+  WIND_SPEED_INDEX.textContent = windSpeed;
+  PRESSURE_INDEX.textContent = pressure;
+  FEELS_LIKE_INDEX.textContent = feelsLikeTemp;
+  VISIBILITY_INDEX.textContent = visibility;
   SUNRISE_TIME.textContent = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
   SUNSET_TIME.textContent = `${sunsetTimestamp.getHours()}:${sunsetTimestamp.getMinutes()}`;
 
   const isRaining = () => {
-    if (WEATHER_CONDITION.toLowerCase() === "rain") {
+    if (weatherCondition.toLowerCase() === "rain") {
       startRain();
     } else {
       stopRaining();
     }
   };
   const isSnowing = () => {
-    if (WEATHER_CONDITION.toLowerCase() === "snow") {
+    if (weatherCondition.toLowerCase() === "snow") {
       startSnow();
     } else {
       stopSnowing();
@@ -79,57 +87,51 @@ const renderTodayWeather = (cities) => {
 const renderForcast = (cities) => {
   const dailyForecasts = [];
   const today = new Date();
-  
+
   for (let i = 0; i < 5; i++) {
     const dayStart = i * 8;
     const dayEnd = dayStart + 8;
     const dayData = cities.list.slice(dayStart, dayEnd);
-    
+
     if (dayData.length > 0) {
-      const temperatures = dayData.map(item => item.main.temp);
+      const temperatures = dayData.map((item) => item.main.temp);
       const maxTemp = Math.max(...temperatures);
       const minTemp = Math.min(...temperatures);
-      
+
       dailyForecasts.push({
         maxTemp,
         minTemp,
-        weather: dayData[0].weather[0].main
+        weather: dayData[0].weather[0].main,
       });
     }
   }
-  
-  console.log('Daily forecasts:', dailyForecasts);
-  
-  const dayContainers = document.querySelectorAll('.days');
-  
+
+  console.log(dailyForecasts);
+
   dailyForecasts.forEach((dayForecast, index) => {
-    if (dayContainers[index]) {
-      const dayContainer = dayContainers[index];
-      const dayTimeElement = dayContainer.querySelector('.day_time .temperature_degrees');
-      const nightTimeElement = dayContainer.querySelector('.night_time .temperature_degrees');
-      
-      if (dayTimeElement && nightTimeElement) {
-        const maxTemperature = isFahrenheit
-          ? KelvinToFahrenheit(dayForecast.maxTemp)
-          : KelvinToCelsius(dayForecast.maxTemp);
-        
-        const minTemperature = isFahrenheit
-          ? KelvinToFahrenheit(dayForecast.minTemp)
-          : KelvinToCelsius(dayForecast.minTemp);
-        
-        dayTimeElement.textContent = maxTemperature;
-        nightTimeElement.textContent = minTemperature;
-      }
+    if (MAX_TEMPERATURE[index] && MIN_TEMPERATURE[index]) {
+      const maxTemperature = isFahrenheit
+        ? KelvinToFahrenheit(dayForecast.maxTemp)
+        : KelvinToCelsius(dayForecast.maxTemp);
+
+      const minTemperature = isFahrenheit
+        ? KelvinToFahrenheit(dayForecast.minTemp)
+        : KelvinToCelsius(dayForecast.minTemp);
+
+      MAX_TEMPERATURE[index].textContent = maxTemperature;
+      MIN_TEMPERATURE[index].textContent = minTemperature;
+      DAY_WEATHER[index].textContent = dayForecast.weather;
     }
   });
-  
+
   if (dailyForecasts.length > 0) {
     MAX_TEMPERATURE.textContent = isFahrenheit
-    ? KelvinToFahrenheit(dailyForecasts[0].maxTemp)
-    : KelvinToCelsius(dailyForecasts[0].maxTemp);
+      ? KelvinToFahrenheit(dailyForecasts[0].maxTemp)
+      : KelvinToCelsius(dailyForecasts[0].maxTemp);
     MIN_TEMPERATURE.textContent = isFahrenheit
-    ? KelvinToFahrenheit(dailyForecasts[0].minTemp)
-    : KelvinToCelsius(dailyForecasts[0].minTemp);
+      ? KelvinToFahrenheit(dailyForecasts[0].minTemp)
+      : KelvinToCelsius(dailyForecasts[0].minTemp);
+    DAY_WEATHER.textContent = dailyForecasts[0].weather;
   }
 };
 
