@@ -77,26 +77,60 @@ const renderTodayWeather = (cities) => {
 };
 
 const renderForcast = (cities) => {
-  const forecast = cities.list.slice(0, 5);
-  console.log(forecast);
-  forecast.forEach((item) => {
-    const day = days[new Date(item.dt * 1000).getDay()];
-    console.log(day);
-    MAX_TEMPERATURE.textContent = isFahrenheit
-    ? KelvinToFahrenheit(cities.list[0].main.temp)
-    : KelvinToCelsius(cities.list[0].main._min);
-    MIN_TEMPERATURE.textContent = isFahrenheit
-    ? KelvinToFahrenheit(cities.list[0].main.temp_min)
-    : KelvinToCelsius(cities.list[0].main.temp_min);
+  const dailyForecasts = [];
+  const today = new Date();
+  
+  for (let i = 0; i < 5; i++) {
+    const dayStart = i * 8;
+    const dayEnd = dayStart + 8;
+    const dayData = cities.list.slice(dayStart, dayEnd);
+    
+    if (dayData.length > 0) {
+      const temperatures = dayData.map(item => item.main.temp);
+      const maxTemp = Math.max(...temperatures);
+      const minTemp = Math.min(...temperatures);
+      
+      dailyForecasts.push({
+        maxTemp,
+        minTemp,
+        weather: dayData[0].weather[0].main
+      });
+    }
+  }
+  
+  console.log('Daily forecasts:', dailyForecasts);
+  
+  const dayContainers = document.querySelectorAll('.days');
+  
+  dailyForecasts.forEach((dayForecast, index) => {
+    if (dayContainers[index]) {
+      const dayContainer = dayContainers[index];
+      const dayTimeElement = dayContainer.querySelector('.day_time .temperature_degrees');
+      const nightTimeElement = dayContainer.querySelector('.night_time .temperature_degrees');
+      
+      if (dayTimeElement && nightTimeElement) {
+        const maxTemperature = isFahrenheit
+          ? KelvinToFahrenheit(dayForecast.maxTemp)
+          : KelvinToCelsius(dayForecast.maxTemp);
+        
+        const minTemperature = isFahrenheit
+          ? KelvinToFahrenheit(dayForecast.minTemp)
+          : KelvinToCelsius(dayForecast.minTemp);
+        
+        dayTimeElement.textContent = maxTemperature;
+        nightTimeElement.textContent = minTemperature;
+      }
+    }
   });
-  // if (forecast.length === 0) {
-  //   MAX_TEMPERATURE.textContent = isFahrenheit
-  //   ? KelvinToFahrenheit(cities.list[0].main.temp)
-  //   : KelvinToCelsius(cities.list[0].main._min);
-  //   MIN_TEMPERATURE.textContent = isFahrenheit
-  //   ? KelvinToFahrenheit(cities.list[0].main.temp_min)
-  //   : KelvinToCelsius(cities.list[0].main.temp_min);
-  // }
+  
+  if (dailyForecasts.length > 0) {
+    MAX_TEMPERATURE.textContent = isFahrenheit
+    ? KelvinToFahrenheit(dailyForecasts[0].maxTemp)
+    : KelvinToCelsius(dailyForecasts[0].maxTemp);
+    MIN_TEMPERATURE.textContent = isFahrenheit
+    ? KelvinToFahrenheit(dailyForecasts[0].minTemp)
+    : KelvinToCelsius(dailyForecasts[0].minTemp);
+  }
 };
 
 const searchCity = async () => {
@@ -107,6 +141,7 @@ const searchCity = async () => {
       if (window.showLoader) window.showLoader();
       const cities = await fetchData(searchedCity);
       renderTodayWeather(cities);
+      renderForcast(cities);
       search.value = "";
     } catch (error) {
       console.error("Error fetching weather data:", error);
