@@ -79,26 +79,24 @@ const renderTodayWeather = (cities) => {
 const renderForcast = (cities) => {
   const forecast = cities.list.slice(0, 5);
   console.log(forecast);
-  forecast.forEach((item, index) => {
+  forecast.forEach((item) => {
     const day = days[new Date(item.dt * 1000).getDay()];
     console.log(day);
     MAX_TEMPERATURE.textContent = isFahrenheit
-    ? KelvinToFahrenheit(cities.list[index].main.temp_max)
-    : KelvinToCelsius(cities.list[index].main.temp_max);
+    ? KelvinToFahrenheit(cities.list[0].main.temp)
+    : KelvinToCelsius(cities.list[0].main._min);
     MIN_TEMPERATURE.textContent = isFahrenheit
-    ? KelvinToFahrenheit(cities.list[index].main.temp_min)
-    : KelvinToCelsius(cities.list[index].main.temp_min);
+    ? KelvinToFahrenheit(cities.list[0].main.temp_min)
+    : KelvinToCelsius(cities.list[0].main.temp_min);
   });
   // if (forecast.length === 0) {
   //   MAX_TEMPERATURE.textContent = isFahrenheit
-  //   ? KelvinToFahrenheit(cities.list[0].main.temp_max)
-  //   : KelvinToCelsius(cities.list[0].main.temp_min);
+  //   ? KelvinToFahrenheit(cities.list[0].main.temp)
+  //   : KelvinToCelsius(cities.list[0].main._min);
   //   MIN_TEMPERATURE.textContent = isFahrenheit
-  //   ? KelvinToFahrenheit(cities.list[0].main.temp_max)
+  //   ? KelvinToFahrenheit(cities.list[0].main.temp_min)
   //   : KelvinToCelsius(cities.list[0].main.temp_min);
   // }
-  console.log(forecast);
-  
 };
 
 const searchCity = async () => {
