@@ -14,6 +14,9 @@ const search = document.getElementById("search");
 const SEARCH_BTN = document.getElementById("seach_btn");
 const FORECAST_CONTAINER =
   document.getElementsByClassName("forecast_container");
+const MAX_TEMPERATURE = document.getElementById("day_time");
+const MIN_TEMPERATURE = document.getElementById("night_time");
+
 
 let days = [
   "Sunday",
@@ -73,7 +76,30 @@ const renderTodayWeather = (cities) => {
   isSnowing();
 };
 
-// const renderForcast = () => {};
+const renderForcast = (cities) => {
+  const forecast = cities.list.slice(0, 5);
+  console.log(forecast);
+  forecast.forEach((item, index) => {
+    const day = days[new Date(item.dt * 1000).getDay()];
+    console.log(day);
+    MAX_TEMPERATURE.textContent = isFahrenheit
+    ? KelvinToFahrenheit(cities.list[index].main.temp_max)
+    : KelvinToCelsius(cities.list[index].main.temp_max);
+    MIN_TEMPERATURE.textContent = isFahrenheit
+    ? KelvinToFahrenheit(cities.list[index].main.temp_min)
+    : KelvinToCelsius(cities.list[index].main.temp_min);
+  });
+  // if (forecast.length === 0) {
+  //   MAX_TEMPERATURE.textContent = isFahrenheit
+  //   ? KelvinToFahrenheit(cities.list[0].main.temp_max)
+  //   : KelvinToCelsius(cities.list[0].main.temp_min);
+  //   MIN_TEMPERATURE.textContent = isFahrenheit
+  //   ? KelvinToFahrenheit(cities.list[0].main.temp_max)
+  //   : KelvinToCelsius(cities.list[0].main.temp_min);
+  // }
+  console.log(forecast);
+  
+};
 
 const searchCity = async () => {
   const searchedCity = search.value;
@@ -106,6 +132,7 @@ const renderHtml = async () => {
   try {
     const cities = await fetchData("batumi");
     renderTodayWeather(cities);
+    renderForcast(cities);
   } catch (err) {
     console.log("Error: ", err);
   }

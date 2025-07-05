@@ -78,18 +78,8 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
             .degrees {
               @include displayCenter(center, flex-start);
               gap: 5px;
-              #temperature_degrees{
-                color: red;
-                body.fahrenheit &{
-                  color: green;
-                }
-              }
-              .circle {
-                width: 10px;
-                height: 10px;
-                border: 2px solid white;
-                border-radius: 50%;
-                margin-top: 8px;
+              #temperature_degrees {
+                 color: $white;
               }
             }
             #temperature_info {
@@ -100,7 +90,6 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
         }
       }
       .whether_info {
-        // @include displayCenter(space-evenly, center);
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         justify-items: center;

@@ -73,17 +73,9 @@ $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
             @include displayCenter(space-between, center);
             width: 80%;
             font-size: 18px;
-            .day_time,
-            .night_time {
-              .temperature_degrees {
-                @include displayCenter(space-between, flex-start);
-                .circle {
-                  width: 6px;
-                  height: 6px;
-                  border: 1px solid white;
-                  border-radius: 50%;
-                }
-              }
+            #day_time,
+            #night_time {
+              color: $white;
             }
           }
         }

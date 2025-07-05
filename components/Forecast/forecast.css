@@ -64,18 +64,9 @@
   width: 80%;
   font-size: 18px;
 }
-.content_wrapper main .forecast_container .days_container .days .day_night .day_time .temperature_degrees,
-.content_wrapper main .forecast_container .days_container .days .day_night .night_time .temperature_degrees {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.content_wrapper main .forecast_container .days_container .days .day_night .day_time .temperature_degrees .circle,
-.content_wrapper main .forecast_container .days_container .days .day_night .night_time .temperature_degrees .circle {
-  width: 6px;
-  height: 6px;
-  border: 1px solid white;
-  border-radius: 50%;
+.content_wrapper main .forecast_container .days_container .days .day_night #day_time,
+.content_wrapper main .forecast_container .days_container .days .day_night #night_time {
+  color: #ffffff;
 }
 
 @media screen and (max-width: 768px) {
