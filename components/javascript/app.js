@@ -28,6 +28,14 @@ let days = [
   "Saturday",
 ];
 
+
+
+const updateWeatherIcon = (iconPath, targetElement) => {
+  if (targetElement) {
+    targetElement.src = iconPath;
+  }
+};
+
 const fetchData = async (city) => {
   // const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
@@ -37,21 +45,25 @@ const fetchData = async (city) => {
 };
 
 const renderTodayWeather = (cities) => {
-  const sunriseTimestamp = new Date(cities.city.sunrise * 1000);
-  const sunsetTimestamp = new Date(cities.city.sunset * 1000);
   const cityName = `${cities.city.name},`;
   const countryCode = cities.city.country;
   const weatherCondition = cities.list[0].weather[0].main;
   const weatherTemp = isFahrenheit
-    ? KelvinToFahrenheit(cities.list[0].main.temp)
-    : KelvinToCelsius(cities.list[0].main.temp);
+  ? KelvinToFahrenheit(cities.list[0].main.temp)
+  : KelvinToCelsius(cities.list[0].main.temp);
   const feelsLikeTemp = isFahrenheit
-    ? KelvinToFahrenheit(cities.list[0].main.feels_like)
-    : KelvinToCelsius(cities.list[0].main.feels_like);
+  ? KelvinToFahrenheit(cities.list[0].main.feels_like)
+  : KelvinToCelsius(cities.list[0].main.feels_like);
   const humidity = `${cities.list[0].main.humidity}%`;
   const windSpeed = `${cities.list[0].wind.speed}km/h`;
   const pressure = `${cities.list[0].main.pressure}hPa`;
   const visibility = `${cities.list[0].visibility}m`;
+  const sunriseTimestamp = new Date(cities.city.sunrise * 1000);
+  const sunsetTimestamp = new Date(cities.city.sunset * 1000);
+  const sunriseTime = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
+  const sunsetTime = `${sunsetTimestamp.getHours()}:${sunsetTimestamp.getMinutes()}`;
+  const weatherIcon = getWeatherIcon(weatherCondition);
+  const mainWeatherIcon = document.querySelector('.city_weather img');
 
   city.textContent = cityName;
   COUNTRY_CODE.textContent = countryCode;
@@ -62,8 +74,10 @@ const renderTodayWeather = (cities) => {
   PRESSURE_INDEX.textContent = pressure;
   FEELS_LIKE_INDEX.textContent = feelsLikeTemp;
   VISIBILITY_INDEX.textContent = visibility;
-  SUNRISE_TIME.textContent = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
-  SUNSET_TIME.textContent = `${sunsetTimestamp.getHours()}:${sunsetTimestamp.getMinutes()}`;
+  SUNRISE_TIME.textContent = sunriseTime;
+  SUNSET_TIME.textContent = sunsetTime;
+  
+  updateWeatherIcon(weatherIcon, mainWeatherIcon);
 
   const isRaining = () => {
     if (weatherCondition.toLowerCase() === "rain") {
@@ -98,10 +112,15 @@ const renderForcast = (cities) => {
       const maxTemp = Math.max(...temperatures);
       const minTemp = Math.min(...temperatures);
 
+      const forecastDate = new Date(today);
+      forecastDate.setDate(today.getDate() + i);
+      const dayName = days[forecastDate.getDay()];
+
       dailyForecasts.push({
         maxTemp,
         minTemp,
         weather: dayData[0].weather[0].main,
+        dayName: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : dayName,
       });
     }
   }
@@ -121,6 +140,15 @@ const renderForcast = (cities) => {
       MAX_TEMPERATURE[index].textContent = maxTemperature;
       MIN_TEMPERATURE[index].textContent = minTemperature;
       DAY_WEATHER[index].textContent = dayForecast.weather;
+      
+      const forecastIcon = getWeatherIcon(dayForecast.weather);
+      const forecastWeatherIcon = document.querySelectorAll('.days img')[index];
+      updateWeatherIcon(forecastIcon, forecastWeatherIcon);
+      
+      const dayNameElement = document.querySelectorAll('.days .day')[index];
+      if (dayNameElement) {
+        dayNameElement.textContent = dayForecast.dayName;
+      }
     }
   });
 
