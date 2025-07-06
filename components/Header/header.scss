@@ -204,17 +204,17 @@ $btn_bg_bark: linear-gradient(
         font-size: 20px;
         cursor: pointer;
       }
-      #error_message {
-        position: absolute;
-        display: none;
-        top: 55px;
-        left: 10px;
-        font-size: 18px;
-        color: $error_message;
-        &.error {
-          display: block;
+        #error_message {
+          position: absolute;
+          display: none;
+          top: 55px;
+          left: 10px;
+          font-size: 18px;
+          color: $error_message;
+          &.error {
+            display: block;
+          }
         }
-      }
     }
   }
 }

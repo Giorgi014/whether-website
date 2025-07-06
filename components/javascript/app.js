@@ -28,7 +28,33 @@ let days = [
   "Saturday",
 ];
 
+const fetchData = async (city) => {
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
+  try {
+    const res = await fetch(url);
+
+    if (!res.ok) {
+      if (res.status === 500) {
+        throw new Error("SERVER_ERROR");
+      }
+      throw new Error("API_ERROR");
+    }
+
+    const data = await res.json();
+
+    if (data.cod && data.cod !== "200") {
+      throw new Error("API_ERROR");
+    }
+
+    return data;
+  } catch (error) {
+    if (error.name === "TypeError" && error.message.includes("fetch")) {
+      throw new Error("NETWORK_ERROR");
+    }
+    throw error;
+  }
+};
 
 const updateWeatherIcon = (iconPath, targetElement) => {
   if (targetElement) {
@@ -36,23 +62,16 @@ const updateWeatherIcon = (iconPath, targetElement) => {
   }
 };
 
-const fetchData = async (city) => {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
-  const res = await fetch(url);
-
-  return await res.json();
-};
-
 const renderTodayWeather = (cities) => {
   const cityName = `${cities.city.name},`;
   const countryCode = cities.city.country;
   const weatherCondition = cities.list[0].weather[0].main;
   const weatherTemp = isFahrenheit
-  ? KelvinToFahrenheit(cities.list[0].main.temp)
-  : KelvinToCelsius(cities.list[0].main.temp);
+    ? KelvinToFahrenheit(cities.list[0].main.temp)
+    : KelvinToCelsius(cities.list[0].main.temp);
   const feelsLikeTemp = isFahrenheit
-  ? KelvinToFahrenheit(cities.list[0].main.feels_like)
-  : KelvinToCelsius(cities.list[0].main.feels_like);
+    ? KelvinToFahrenheit(cities.list[0].main.feels_like)
+    : KelvinToCelsius(cities.list[0].main.feels_like);
   const humidity = `${cities.list[0].main.humidity}%`;
   const windSpeed = `${cities.list[0].wind.speed}km/h`;
   const pressure = `${cities.list[0].main.pressure}hPa`;
@@ -62,7 +81,7 @@ const renderTodayWeather = (cities) => {
   const sunriseTime = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
   const sunsetTime = `${sunsetTimestamp.getHours()}:${sunsetTimestamp.getMinutes()}`;
   const weatherIcon = getWeatherIcon(weatherCondition);
-  const mainWeatherIcon = document.querySelector('.city_weather img');
+  const mainWeatherIcon = document.querySelector(".city_weather img");
 
   city.textContent = cityName;
   COUNTRY_CODE.textContent = countryCode;
@@ -75,7 +94,7 @@ const renderTodayWeather = (cities) => {
   VISIBILITY_INDEX.textContent = visibility;
   SUNRISE_TIME.textContent = sunriseTime;
   SUNSET_TIME.textContent = sunsetTime;
-  
+
   updateWeatherIcon(weatherIcon, mainWeatherIcon);
 
   const isRaining = () => {
@@ -119,7 +138,7 @@ const renderForcast = (cities) => {
         maxTemp,
         minTemp,
         weather: dayData[0].weather[0].main,
-        dayName: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : dayName,
+        dayName: i === 0 ? "Today" : i === 1 ? "Tomorrow" : dayName,
       });
     }
   }
@@ -139,12 +158,12 @@ const renderForcast = (cities) => {
       MAX_TEMPERATURE[index].textContent = maxTemperature;
       MIN_TEMPERATURE[index].textContent = minTemperature;
       DAY_WEATHER[index].textContent = dayForecast.weather;
-      
+
       const forecastIcon = getWeatherIcon(dayForecast.weather);
-      const forecastWeatherIcon = document.querySelectorAll('.days img')[index];
+      const forecastWeatherIcon = document.querySelectorAll(".days img")[index];
       updateWeatherIcon(forecastIcon, forecastWeatherIcon);
-      
-      const dayNameElement = document.querySelectorAll('.days .day')[index];
+
+      const dayNameElement = document.querySelectorAll(".days .day")[index];
       if (dayNameElement) {
         dayNameElement.textContent = dayForecast.dayName;
       }
@@ -164,6 +183,13 @@ const renderForcast = (cities) => {
 
 const searchCity = async () => {
   const searchedCity = search.value;
+  const errorMessage = document.getElementById("error_message");
+  const serverErrorMessage = document.getElementById("server_error_message");
+  const input = document.getElementById("search");
+
+  input.classList.remove("error");
+  errorMessage.classList.remove("error");
+  serverErrorMessage.classList.remove("error");
 
   if (searchedCity) {
     try {
@@ -173,10 +199,14 @@ const searchCity = async () => {
       renderForcast(cities);
       search.value = "";
     } catch (error) {
-      const errorMessage = document.getElementById("error_message");
-      const input = document.getElementById("search");
       input.classList.add("error");
       errorMessage.classList.add("error");
+      if (
+        error.message === "NETWORK_ERROR" ||
+        error.message === "SERVER_ERROR"
+      ) {
+        serverErrorMessage.classList.add("server_error");
+      }
       console.error("Error fetching weather data:", error);
     } finally {
       if (window.hideLoader) window.hideLoader();
@@ -199,8 +229,14 @@ const renderHtml = async () => {
     const cities = await fetchData("batumi");
     renderTodayWeather(cities);
     renderForcast(cities);
-  } catch (err) {
-    console.log("Error: ", err);
+  } catch (error) {
+    if (error.message === "NETWORK_ERROR" || error.message === "SERVER_ERROR") {
+      const serverErrorMessage = document.getElementById(
+        "server_error_message"
+      );
+      serverErrorMessage.classList.add("server_error");
+    }
+    console.error("Error loading initial weather data:", error);
   }
 };
 

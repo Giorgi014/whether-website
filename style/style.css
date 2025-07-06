@@ -35,6 +35,24 @@ body.darkmode {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.content_wrapper #server_error_message {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  font-size: 30px;
+  color: #ffffff;
+  width: 350px;
+  height: 200px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 50%, #3a2414 100%);
+}
+.content_wrapper #server_error_message.server_error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 .content_wrapper main {
   width: 100vw;
 }/*# sourceMappingURL=style.css.map */
