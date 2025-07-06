@@ -177,6 +177,9 @@ body.fahrenheit .content_wrapper header .mode_container .mode #temp_handle_cont 
   background: rgba(255, 255, 255, 0.1058823529);
   color: #ffffff;
 }
+.content_wrapper header .search_container input.error {
+  border: 1px solid #d10000;
+}
 .content_wrapper header .search_container input::-moz-placeholder {
   color: #ffffff;
 }
@@ -188,6 +191,17 @@ body.fahrenheit .content_wrapper header .mode_container .mode #temp_handle_cont 
   right: 10px;
   font-size: 20px;
   cursor: pointer;
+}
+.content_wrapper header .search_container #error_message {
+  position: absolute;
+  display: none;
+  top: 55px;
+  left: 10px;
+  font-size: 18px;
+  color: #d10000;
+}
+.content_wrapper header .search_container #error_message.error {
+  display: block;
 }
 
 @media screen and (max-width: 768px) {

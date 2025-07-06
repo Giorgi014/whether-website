@@ -37,7 +37,6 @@ const updateWeatherIcon = (iconPath, targetElement) => {
 };
 
 const fetchData = async (city) => {
-  // const url = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}&appid=${apiKey}`;
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
   const res = await fetch(url);
 
@@ -174,6 +173,10 @@ const searchCity = async () => {
       renderForcast(cities);
       search.value = "";
     } catch (error) {
+      const errorMessage = document.getElementById("error_message");
+      const input = document.getElementById("search");
+      input.classList.add("error");
+      errorMessage.classList.add("error");
       console.error("Error fetching weather data:", error);
     } finally {
       if (window.hideLoader) window.hideLoader();
