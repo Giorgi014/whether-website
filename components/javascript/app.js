@@ -241,6 +241,7 @@ SEARCH_BTN.addEventListener("click", () => {
 
 const renderHtml = async () => {
   try {
+    if (window.showLoader) window.showLoader();
     const cities = await fetchData("batumi");
     renderTodayWeather(cities);
     renderForcast(cities);
@@ -252,6 +253,8 @@ const renderHtml = async () => {
       serverErrorMessage.classList.add("server_error");
     }
     console.error("Error loading initial weather data:", error);
+  } finally {
+    if (window.hideLoader) window.hideLoader();
   }
 };
 
