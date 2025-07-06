@@ -3,7 +3,7 @@
 2.About Project: This is a weather forecast web application that allows users to find detailed weather information for any city worldwide. The project uses the OpenWeather API to fetch data.
 
 3.Built With:
-  Programming languages ​​used: HTML, SASS, JAVASCRIPT
+  Programming languages ​​used: HTML, SASS, JAVASCRIPT  
   Websites used for icons: https://fontawesome.com/ ,  https://erikflowers.github.io/weather-icons/,
   Used to connect to the API: https://openweathermap.org/
   Hosting: https://vercel.com/
