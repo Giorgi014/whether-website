@@ -24,10 +24,21 @@ $white: #ffffff;
 $lite_white: #ffffff6f;
 $lite_white_bg: #ffffff1b;
 $error_message: #d10000;
+
+// LIGHT MODE COLORS ======================
 $sunny_day: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+$cloudy_day: linear-gradient(135deg, #2d3436 0%, #b0b0b3 50%, #000000 100%);
 $rainy_day: linear-gradient(135deg, #374151 0%, #4b5563 50%, #111827 100%);
+$snowy_day: linear-gradient(135deg, #a0a0a0 0%, #808080 50%, #606060 100%);
+
+// DARK MODE COLORS ======================
 $moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
-$rainy_night: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #243447 100%);
+$cloudy_night: linear-gradient(135deg, #303030 0%, #1a1f2b 50%, #020405 100%);
+$rainy_night: linear-gradient(135deg, #0c0f12 0%, #1a2332 50%, #050d16 100%);
+$snowy_night: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #243447 100%);
+// $snowy_night: linear-gradient(135deg, #1e293b 0%, #2d3748 50%, #0f172a 100%);
+
+
 
 * {
   margin: 0px;
@@ -45,27 +56,6 @@ body {
   &.darkmode {
     background: $moon_night;
   }
-  // background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);    //sunny
-  // background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);    //rainy
-  // background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);    //cloudy
-  // background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);    //default
-  // background-image: linear-gradient(to bottom right, rgb(30, 58, 138), rgb(30, 64, 175), rgb(88, 28, 135));
-  // dark mode
-  // background: linear-gradient(135deg, #1a1a1a 0%, #2d1810 50%, #3a2414 100%);   //sunny
-  // background: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #243447 100%);   //rainy
-  // background: linear-gradient(135deg, #1a1320 0%, #2a1d35 50%, #352849 100%);   //cloudy
-  // background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f2027 100%);   //default
-
-  // background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #7c3aed 100%);
-  // background: linear-gradient(135deg, #a0a0a0 0%, #808080 50%, #606060 100%);
-  // background: linear-gradient(135deg, #374151 0%, #4b5563 50%, #111827 100%);
-  // background: linear-gradient(135deg, #0984e3 0%, #636e72 50%, #2d3436 100%);
-  // background: linear-gradient(135deg, #1e3a8a 0%, #374151 50%, #111827 100%);
-  // background: linear-gradient(135deg, #74b9ff 0%, #ffffff 50%, #ddd6fe 100%);
-  // background: linear-gradient(135deg, #1e3a8a 0%, #ffffff 50%, #d1d5db 100%);
-  // background: linear-gradient(135deg, #111827 0%, #7c3aed 50%, #000000 100%);
-  // background: linear-gradient(135deg, #74b9ff 0%, #6c5ce7 50%, #fd79a8 100%);
-  // background: linear-gradient(135deg, #1f2937 0%, #1e3a8a 50%, #7c3aed 100%);
 }
 
 %maxWidth {
