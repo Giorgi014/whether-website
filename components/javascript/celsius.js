@@ -1,3 +1,4 @@
+// This file provides a utility function to convert temperature from Kelvin to Celsius.
 const KelvinToCelsius = (kelvin) => {
   const celsius = kelvin - 273.15;
 

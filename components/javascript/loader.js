@@ -1,3 +1,4 @@
+// This file controls the display of a loading spinner and the main weather content.
 const loader = document.getElementsByClassName("sk-cube-grid");
 const WEATHER_CONTENT = document.getElementsByClassName("city_container");
 

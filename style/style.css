@@ -10,6 +10,17 @@
   font-family: "InterTight Thin";
   src: url(../assets/font/Inter_Tight/static/InterTight-Thin.ttf) format("woff2");
 }
+:root {
+  --sunny_day: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+  --cloudy_day: linear-gradient(135deg, #2d3436 0%, #b0b0b3 50%, #000000 100%);
+  --rainy_day: linear-gradient(135deg, #374151 0%, #4b5563 50%, #111827 100%);
+  --snowy_day: linear-gradient(135deg, #a0a0a0 0%, #808080 50%, #606060 100%);
+  --moon_night: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
+  --cloudy_night: linear-gradient(135deg, #303030 0%, #1a1f2b 50%, #020405 100%);
+  --rainy_night: linear-gradient(135deg, #0c0f12 0%, #1a2332 50%, #050d16 100%);
+  --snowy_night: linear-gradient(135deg, #0f1419 0%, #1a2332 50%, #243447 100%);
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -20,12 +31,12 @@ body {
   width: 100vw;
   height: 100vh;
   color: #ffffff;
-  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 50%, #6c5ce7 100%);
+  background: var(--sunny_day);
   font-family: "InterTight Medium";
   overflow: hidden;
 }
 body.darkmode {
-  background: linear-gradient(135deg, #2d3436 0%, #6c5ce7 50%, #000000 100%);
+  background: var(--moon_night);
 }
 
 .content_wrapper {

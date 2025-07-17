@@ -1,3 +1,4 @@
+// This file manages the visual effect of snowing on the webpage, creating and animating snowflake elements.
 let snowing;
 
 const crateSnowFlake = () => {

@@ -1,33 +1,4 @@
-const apiKey = "c002eabec3dffadff47e3a2e8c28fb4f";
-const city = document.getElementById("city");
-const COUNTRY_CODE = document.getElementById("country_code");
-const temp = document.getElementById("temperature_degrees");
-const WEATHER_INFO = document.getElementById("temperature_info");
-const HUMIDITY_INDEX = document.getElementById("humidity_index");
-const WIND_SPEED_INDEX = document.getElementById("wind_speed_index");
-const PRESSURE_INDEX = document.getElementById("pressure_index");
-const FEELS_LIKE_INDEX = document.getElementById("feels_like_index");
-const VISIBILITY_INDEX = document.getElementById("visibility_index");
-const SUNRISE_TIME = document.getElementById("sunrise_time");
-const SUNSET_TIME = document.getElementById("sunset_time");
-const search = document.getElementById("search");
-const SEARCH_BTN = document.getElementById("seach_btn");
-const FORECAST_CONTAINER =
-  document.getElementsByClassName("forecast_container");
-const DAY_WEATHER = document.querySelectorAll("#day_weather");
-const MAX_TEMPERATURE = document.querySelectorAll("#day_time");
-const MIN_TEMPERATURE = document.querySelectorAll("#night_time");
-
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
+// This is the main application file, responsible for fetching weather data, rendering current weather and forecast information, and handling user interactions.
 const fetchData = async (city) => {
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
@@ -56,27 +27,6 @@ const fetchData = async (city) => {
   }
 };
 
-const updateWeatherIcon = (iconPath, targetElement) => {
-  if (targetElement) {
-    targetElement.src = iconPath;
-  }
-};
-const getWeatherIcon = (weatherCondition) => {
-  const condition = weatherCondition.toLowerCase();
-
-  const iconMap = {
-    clear: "./assets/icon/weather-icons-master/svg/wi-day-sunny.svg",
-    clouds: "./assets/icon/weather-icons-master/svg/wi-cloudy.svg",
-    rain: "./assets/icon/weather-icons-master/svg/wi-rain.svg",
-    drizzle: "./assets/icon/weather-icons-master/svg/wi-sprinkle.svg",
-    thunderstorm: "./assets/icon/weather-icons-master/svg/wi-thunderstorm.svg",
-    snow: "./assets/icon/weather-icons-master/svg/wi-snow.svg",
-    sleet: "./assets/icon/weather-icons-master/svg/wi-sleet.svg",
-    wind: "./assets/icon/weather-icons-master/svg/wi-strong-wind.svg",
-  };
-
-  return iconMap[condition];
-};
 const renderTodayWeather = (cities) => {
   const cityName = `${cities.city.name},`;
   const countryCode = cities.city.country;
@@ -112,6 +62,7 @@ const renderTodayWeather = (cities) => {
 
   updateWeatherIcon(weatherIcon, mainWeatherIcon);
 
+  updateBackground(weatherCondition);
   const isRaining = () => {
     if (weatherCondition.toLowerCase() === "rain") {
       startRain();
