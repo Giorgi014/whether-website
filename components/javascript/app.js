@@ -164,6 +164,7 @@ const searchCity = async () => {
       currentWeatherData = cities;
       renderTodayWeather(cities);
       renderForcast(cities);
+      temperatureMode(currentWeatherData);
       search.value = "";
     } catch (error) {
       input.classList.add("error");
@@ -213,4 +214,4 @@ const renderHtml = async () => {
 };
 
 renderHtml();
-console.log(fetchData("obihiro"));
+console.log(fetchData("batumi"));
