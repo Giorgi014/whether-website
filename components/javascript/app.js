@@ -40,7 +40,7 @@ const renderTodayWeather = (cities) => {
   const humidity = `${cities.list[0].main.humidity}%`;
   const windSpeed = `${cities.list[0].wind.speed}km/h`;
   const pressure = `${cities.list[0].main.pressure}hPa`;
-  const visibility = `${cities.list[0].visibility}m`;
+  const visibility = calculateVisibility(cities.list[0].visibility);
   const sunriseTimestamp = new Date(cities.city.sunrise * 1000);
   const sunsetTimestamp = new Date(cities.city.sunset * 1000);
   const sunriseTime = `${sunriseTimestamp.getHours()}:${sunriseTimestamp.getMinutes()}`;
@@ -210,4 +210,4 @@ const renderHtml = async () => {
 };
 
 renderHtml();
-console.log(fetchData("batumi"));
+console.log(fetchData("obihiro"));
