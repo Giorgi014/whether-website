@@ -44,3 +44,5 @@ let days = [
   "Friday",
   "Saturday",
 ];
+
+let currentWeatherData = null;

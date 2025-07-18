@@ -161,6 +161,7 @@ const searchCity = async () => {
     try {
       if (window.showLoader) window.showLoader();
       const cities = await fetchData(searchedCity);
+      currentWeatherData = cities;
       renderTodayWeather(cities);
       renderForcast(cities);
       search.value = "";
@@ -194,8 +195,10 @@ const renderHtml = async () => {
   try {
     if (window.showLoader) window.showLoader();
     const cities = await fetchData("batumi");
+    currentWeatherData = cities;
     renderTodayWeather(cities);
     renderForcast(cities);
+    temperatureMode(currentWeatherData);
   } catch (error) {
     if (error.message === "NETWORK_ERROR" || error.message === "SERVER_ERROR") {
       const serverErrorMessage = document.getElementById(
